@@ -1,58 +1,166 @@
-/*
+import 'package:digital_box/Screens/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-  var _currentIndex = 0;
+class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffcccaca),
+      backgroundColor: Color(0xffeaeaea),
       drawer: Drawer(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height/10,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("About DigiBox",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/80,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("Feedback",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/80,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("Terms and Conditions",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/80,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("Privacy Policies",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/80,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("FAQs",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+
+              SizedBox(height: MediaQuery.of(context).size.height/80,),
+              Container(
+                height: 40,
+                width: MediaQuery.of(context).size.width-100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(
+                  child: Text("Settings",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15, color: Colors.black,
+                        fontWeight: FontWeight.w400
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
 
       ),
       appBar: AppBar(
 
         elevation: 0,
-        backgroundColor: Color(0xffcccaca),
-    leading: Builder(builder: (context) {
-    return
+        backgroundColor: Colors.transparent,
+        leading: Builder(builder: (context) {
+          return
 
-      IconButton(
-        icon:  Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10)
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Icon(Icons.menu, color: Colors.grey,),
-            )),
-      onPressed: () {
-      Scaffold.of(context).openDrawer();
-      },
-      );
+            IconButton(
+              icon:  Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(Icons.menu, color: Colors.grey,),
+                  )),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
 
 
-    // GestureDetector(
-    //     onTap: (){
-    //       Scaffold.of(context).openDrawer();
-    //     },
-    //     child: Image.asset("assets/menuIcon.png")
-    // );
-    }
-      ),
+          // GestureDetector(
+          //     onTap: (){
+          //       Scaffold.of(context).openDrawer();
+          //     },
+          //     child: Image.asset("assets/menuIcon.png")
+          // );
+        }
+        ),
         title: Center(
           child: Container(
             child: Column(
@@ -78,8 +186,13 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Icon(Icons.person)
+            child: GestureDetector(
+              onTap: (){
+                Get.to(ProfilePage());
+              },
+              child: Container(
+                  child: Icon(Icons.person)
+              ),
             ),
           )
         ],
@@ -120,8 +233,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: MediaQuery.of(context).size.height/3.2,
                           width: MediaQuery.of(context).size.width/1.5,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white
                           ),
                         ),
                       ),
@@ -165,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text("Customer Feedback",
+                child: Text("Pending Queries",
                   style: GoogleFonts.roboto(
                       fontSize: 20, color: Colors.black,
                       fontWeight: FontWeight.w500
@@ -180,8 +293,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white
                       ),
                       child: Row(
                         children: [
@@ -333,10 +446,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height/6,
               )
-
-
-
             ],
           ),
         ),
@@ -344,4 +457,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-*/

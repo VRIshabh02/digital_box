@@ -1,3 +1,5 @@
+import 'package:digital_box/Screens/bottomBar.dart';
+import 'package:digital_box/Screens/home.dart';
 import 'package:digital_box/Screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -75,7 +77,7 @@ class Carousel3 extends StatelessWidget {
                                       padding: const EdgeInsets.all(8.0),
                                       child: GestureDetector(
                                         onTap: (){
-                                          Get.off(HomeScreen());
+                                          Get.off(BottomBar());
                                         },
                                         child: Container(
                                           width: MediaQuery.of(context).size.width -100,
