@@ -1,9 +1,13 @@
+import 'package:digital_box/Screens/chatsList.dart';
+import 'package:digital_box/Screens/docUpload.dart';
 import 'package:digital_box/Screens/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../Models/GetAllChats.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -202,257 +206,221 @@ class Home extends StatelessWidget {
 
 
 
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+      body: FutureBuilder(
+        future: getAllChats(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            GetAllChats chatsData =
+            snapshot.data as GetAllChats;
 
-              SizedBox(height: MediaQuery.of(context).size.height/30,),
+            print(chatsData);
 
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("Document Status",
-                  style: GoogleFonts.roboto(
-                      fontSize: 20, color: Colors.black,
-                      fontWeight: FontWeight.w500
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-              ),
 
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
+
+            return Container(
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height/3.2,
-                          width: MediaQuery.of(context).size.width/1.5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white
+
+                      SizedBox(height: MediaQuery
+                          .of(context)
+                          .size
+                          .height / 30,),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text("Documents",
+                              style: GoogleFonts.roboto(
+                                  fontSize: 20, color: Colors.black,
+                                  fontWeight: FontWeight.w500
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.to(DocUpload());
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xFF2954F5)
+                                ),
+                                child: Icon(Icons.add, color: Colors.white,),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+
+                      // SingleChildScrollView(
+                      //   scrollDirection: Axis.horizontal,
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.all(16.0),
+                      //     child: Row(
+                      //       children: [
+                      //         Padding(
+                      //           padding: const EdgeInsets.all(8.0),
+                      //           child: Container(
+                      //             height: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .height / 3.2,
+                      //             width: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .width / 1.5,
+                      //             decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //                 color: Colors.white
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         Padding(
+                      //           padding: const EdgeInsets.all(8.0),
+                      //           child: Container(
+                      //             height: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .height / 3.2,
+                      //             width: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .width / 1.5,
+                      //             decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //                 color: Colors.white
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         Padding(
+                      //           padding: const EdgeInsets.all(8.0),
+                      //           child: Container(
+                      //             height: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .height / 3.2,
+                      //             width: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .width / 1.5,
+                      //             decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //                 color: Colors.white
+                      //             ),
+                      //           ),
+                      //         ),
+                      //         Padding(
+                      //           padding: const EdgeInsets.all(8.0),
+                      //           child: Container(
+                      //             height: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .height / 3.2,
+                      //             width: MediaQuery
+                      //                 .of(context)
+                      //                 .size
+                      //                 .width / 1.5,
+                      //             decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(10),
+                      //                 color: Colors.white
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text("Queries",
+                          style: GoogleFonts.roboto(
+                              fontSize: 20, color: Colors.black,
+                              fontWeight: FontWeight.w500
+                          ),
+                          textAlign: TextAlign.right,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height/3.2,
-                          width: MediaQuery.of(context).size.width/1.5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white
+
+                      Column(
+                        children: [
+
+                          for(int i = 0; i < chatsData.ticketData!.length; i++)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(
+                                        chatsData.ticketData![i].status == "closed" ?
+                                        Icons.close : Icons.check
+
+
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      children: [
+                                        Text(chatsData.ticketData![i].subject.toString(),
+                                          style: GoogleFonts.roboto(
+                                              fontSize: 20, color: Colors.black,
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.right,
+                                        ),
+                                        Text(
+                                          chatsData.ticketData![i].openAt.toString().substring(0,10),
+                                          style: GoogleFonts.roboto(
+                                              fontSize: 15,
+                                              color: Color(0xff676767),
+                                              fontWeight: FontWeight.w500
+                                          ),
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height/3.2,
-                          width: MediaQuery.of(context).size.width/1.5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height/3.2,
-                          width: MediaQuery.of(context).size.width/1.5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white
-                          ),
-                        ),
-                      ),
+                      SizedBox(
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height / 6,
+                      )
                     ],
                   ),
                 ),
               ),
-
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("Pending Queries",
-                  style: GoogleFonts.roboto(
-                      fontSize: 20, color: Colors.black,
-                      fontWeight: FontWeight.w500
-                  ),
-                  textAlign: TextAlign.right,
-                ),
-              ),
-
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.person),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Customer",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 20, color: Colors.black,
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                                Text("Customer Feedback jvj ej f j kf f dfjk df fd ",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 15, color: Color(0xff676767),
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.person),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Customer",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 20, color: Colors.black,
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                                Text("Customer Feedback jvj ej f j kf f dfjk df fd ",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 15, color: Color(0xff676767),
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.person),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Customer",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 20, color: Colors.black,
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                                Text("Customer Feedback jvj ej f j kf f dfjk df fd ",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 15, color: Color(0xff676767),
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(Icons.person),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Customer",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 20, color: Colors.black,
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                                Text("Customer Feedback jvj ej f j kf f dfjk df fd ",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 15, color: Color(0xff676767),
-                                      fontWeight: FontWeight.w500
-                                  ),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height/6,
-              )
-            ],
-          ),
-        ),
+            );
+          }else{
+            return CircularProgressIndicator();
+          }
+        }
       ),
     );
   }

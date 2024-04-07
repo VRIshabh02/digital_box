@@ -1,6 +1,9 @@
+import 'package:digital_box/Screens/getStartedScreen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -244,44 +247,56 @@ class ProfilePage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  SizedBox(width: MediaQuery.of(context).size.width/12,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.blue
+              child: GestureDetector(
+                onTap: (){
+                  // SharedPreferences prefs =
+                  //     await SharedPreferences
+                  //     .getInstance();
+                  // prefs.remove('userData');
+
+                  _showAlertDialog(context);
+
+
+                },
+                child: Row(
+                  children: [
+                    SizedBox(width: MediaQuery.of(context).size.width/12,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.blue
+
+                        ),
 
                       ),
-
                     ),
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Documents",
-                          style: GoogleFonts.roboto(
-                              fontSize: 17, color: Colors.black,
-                              fontWeight: FontWeight.w500
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Logout",
+                            style: GoogleFonts.roboto(
+                                fontSize: 17, color: Colors.black,
+                                fontWeight: FontWeight.w500
+                            ),
+                            textAlign: TextAlign.start,
                           ),
-                          textAlign: TextAlign.start,
-                        ),
-                        Text("Check the shared files",
-                          style: GoogleFonts.roboto(
-                              fontSize: 12, color: Color(0xff676767),
-                              fontWeight: FontWeight.w400
+                          Text("Logout the user.",
+                            style: GoogleFonts.roboto(
+                                fontSize: 12, color: Color(0xff676767),
+                                fontWeight: FontWeight.w400
+                            ),
+                            textAlign: TextAlign.start,
                           ),
-                          textAlign: TextAlign.start,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 
@@ -294,4 +309,41 @@ class ProfilePage extends StatelessWidget {
 
     );
   }
+}
+
+void _showAlertDialog(BuildContext context) {
+  showCupertinoModalPopup<void>(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: const Text('Sign Out'),
+      content: const Text('Are you sure you want to Sign Out'),
+      actions: <CupertinoDialogAction>[
+        CupertinoDialogAction(
+          /// This parameter indicates this action is the default,
+          /// and turns the action's text to bold text.
+          isDefaultAction: true,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('No'),
+        ),
+        CupertinoDialogAction(
+          /// This parameter indicates the action would perform
+          /// a destructive action such as deletion, and turns
+          /// the action's text color to red.
+
+          isDestructiveAction: true,
+          onPressed: () async {
+            SharedPreferences prefs =
+            await SharedPreferences
+                .getInstance();
+            prefs.remove('userData');
+
+            Get.offAll(MyHomePage());
+          },
+          child: const Text('Yes'),
+        )
+      ],
+    ),
+  );
 }

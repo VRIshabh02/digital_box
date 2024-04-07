@@ -149,7 +149,10 @@ class _LogInPageState extends State<LogInPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                       onTap: (){
-                          Get.offAll(BarclaysHomePage());
+                          // Get.offAll(BarclaysHomePage());
+
+                        loginFunction(context, emailController.text, passwordController.text);
+
                       },
                       child: Container(
                         height: 50,
@@ -190,25 +193,29 @@ void loginFunction(BuildContext context, String email, String password) async {
 
   final dio = D.Dio();
   final response =  await dio.post(
-    'login',
+    'http://ec2-13-233-98-115.ap-south-1.compute.amazonaws.com:5000/login',
     data: {
       'email': email,
-      'password' : password,
-      'socialid' : 0
+      'password' : password
     },
-    options: D.Options(contentType: D.Headers.formUrlEncodedContentType),
+    // options: D.Options(contentType: D.Headers.formUrlEncodedContentType),
+
+    options: D.Options(
+      contentType: D.Headers.jsonContentType, // Set content type to JSON
+    ),
   );
-  if(response.data['code'] == 200) {
+
+  print(response);
+  print(response.data['code']);
+  if(response.data['code'] == '200') {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userData', jsonEncode(response.data));
+    print(response.data);
+    print(response.data['userId']);
 
-
-
-
-    //userDataGlobal = await getProfileApi();
-
-
+    SharedPreferences prefs1 = await SharedPreferences.getInstance();
+    prefs1.setString('userID', jsonEncode(response.data['userId'].toString()));
 
     Get.offAll(BarclaysHomePage(), arguments: email);
   }

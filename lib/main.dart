@@ -2,7 +2,9 @@ import 'package:digital_box/Screens/barclaysHomePage.dart';
 import 'package:digital_box/Screens/carousel2.dart';
 import 'package:digital_box/Screens/carousel3.dart';
 import 'package:digital_box/Screens/bottomBar.dart';
+import 'package:digital_box/Screens/chats.dart';
 import 'package:digital_box/Screens/docUpload.dart';
+import 'package:digital_box/Screens/queryRaise.dart';
 import 'package:digital_box/Screens/home.dart';
 import 'package:digital_box/Screens/homeScreen.dart';
 import 'package:digital_box/Screens/loginPage.dart';
@@ -10,8 +12,6 @@ import 'package:digital_box/Screens/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'Screens/carousel1.dart';
 import 'Screens/getStartedScreen.dart';
 
 void main() {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home:
       MyHomePage(),
-      // ProfilePage()
+      // Chats()
 
     );
   }

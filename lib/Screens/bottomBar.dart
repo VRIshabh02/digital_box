@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
-import 'package:digital_box/Screens/chat.dart';
-import 'package:digital_box/Screens/docUpload.dart';
+import 'package:digital_box/Screens/chats.dart';
+import 'package:digital_box/Screens/chatsPage.dart';
+import 'package:digital_box/Screens/queryRaise.dart';
 import 'package:digital_box/Screens/home.dart';
 import 'package:digital_box/Screens/notification.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,8 @@ class _BottomBarState extends State<BottomBar> {
   /// widget list
   final List<Widget> bottomBarPages = [
     const Home(),
-    const DocUpload(),
-    const Chat(),
+    const QueryRaise(),
+    const Chats(),
     const NotificationPage(),
     const Page5(),
   ];

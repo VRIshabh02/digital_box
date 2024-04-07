@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Best and popular app for live education\n course from home",
+                    child: Text("",
                       style: GoogleFonts.poppins(
                           fontSize: 15, color: const Color(0xFFCBCBCB)
                       ), textAlign: TextAlign.center, ),
