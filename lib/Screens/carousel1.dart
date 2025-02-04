@@ -74,6 +74,7 @@ class Carousel1 extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
+                                // text align
 
                                 SizedBox(height: MediaQuery.of(context).size.height/30,),
 
